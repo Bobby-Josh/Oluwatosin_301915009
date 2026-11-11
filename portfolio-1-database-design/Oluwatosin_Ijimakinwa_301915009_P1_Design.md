@@ -1,4 +1,4 @@
-# Define entities keys and relationships
+# Bank Transaction System Database Design
 
 ## 1. Entities
 
