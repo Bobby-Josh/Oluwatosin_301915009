@@ -22,6 +22,7 @@ erDiagram
         int transaction_id PK
         int source_account_id FK "optional"
         int destination_account_id FK "optional"
+        int biller_id FK "optional"
         numeric amount
         string transaction_type
         timestamp created_at
@@ -49,12 +50,13 @@ erDiagram
 
 ## System Example
 
-Customer Sarah has `customer_id = 101`. She opens a Savings account (`account_id = 501`) and a Checking account (`account_id = 502`). Both rows in the `ACCOUNT` table contain `customer_id = 101` as a Foreign Key. When Sarah transfers \$50 from Savings to Checking, `TRANSACTION` creates a record (`transaction_id = 9001`) with `source_account_id = 501` and `destination_account_id = 502`.
+Customer Alice has `customer_id = 1001`. She opens a Checking account (`account_id = 501`) and a Savings account (`account_id = 502`). Both rows in the `ACCOUNT` table contain `customer_id = 1001` as a Foreign Key. When Alice transfers \$200 from Checking to Savings, `TRANSACTION` creates a record (`transaction_id = 901`) with `source_account_id = 501`, `destination_account_id = 502`, and `biller_id = NULL`.
 
 ## Optional Fields
 
-* `source_account_id`: Optional (NULL for direct cash deposits into an account).
-* `destination_account_id`: Optional (NULL for cash withdrawals from an account).
+* `source_account_id`: Optional (`NULL` for external cash deposits into an account).
+* `destination_account_id`: Optional (`NULL` for cash withdrawals or utility bill payments).
+* `biller_id`: Optional (`NULL` for deposits, withdrawals, and peer-to-peer account transfers; populated only when `transaction_type = 'Payment'`).
 
 ## Rules Requiring Additional Transaction Logic or Triggers
 
