@@ -1,19 +1,19 @@
 # MIT 8103 Advanced Database Systems Portfolio
 
-Name: Oluwatosin Ijimakinwa
-
-Student ID: 301915009
+* **Name:** Oluwatosin Ijimakinwa
+* **Student ID:** 301915009
+* **Summary Document:** [Ijimakinwa_Oluwatosin_301915009_PortfolioSummary.md](Ijimakinwa_Oluwatosin_301915009_PortfolioSummary.md)
 
 ## Case study
 
-To be selected in the next step.
+PayPulse Digital Fintech Platform — supporting retail deposit accounts (`Checking`, `Savings`, and `Money Market`), peer-to-peer transfers, and utility bill payments across PostgreSQL 16 and MongoDB 8.0.38.
 
 ## Portfolio folders
 
-- portfolio-1-database-design: design, schema and normalisation.
-- portfolio-2-query-optimisation: queries, plans and performance analysis.
-- portfolio-3-transactions-concurrency: commit, rollback and concurrency.
-- portfolio-4-nosql: NoSQL model, implementation and suitability.
-- portfolio-5-distributed-cloud: distributed or cloud database exercise.
+* `portfolio-1-database-design`: 3NF relational schema, sample data, and 16 negative constraint tests.
+* `portfolio-2-query-optimisation`: relational business queries and 100,000-row composite B-tree index benchmark.
+* `portfolio-3-transactions-concurrency`: guarded commit/rollback tests and two-session `READ COMMITTED` concurrency verification.
+* `portfolio-4-nosql`: MongoDB 8.0.38 setup, polymorphic `account_events` model, and document queries.
+* `portfolio-5-distributed-cloud`: replica set high availability, sharding evaluation, and MongoDB Atlas cloud architecture analysis.
 
-Each folder will contain its scripts, notes and execution evidence.
+Each folder contains its scripts, documentation, and execution evidence.
