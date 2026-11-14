@@ -2,7 +2,7 @@
 
 ## Queries and results
 
-Three PostgreSQL queries were implemented in `Oluwatosin_Ijimakinwa_301915009_P2_Queries.sql` against the `public` schema of `paypulse_portfolio`:
+Three PostgreSQL queries were implemented in `Ijimakinwa_Oluwatosin_301915009_P2_Queries.sql` against the `public` schema of `paypulse_portfolio`:
 
 * **Query 1 (Outgoing Transactions with Customer and Source Account Details):** Joins `public.transaction`, `public.account`, and `public.customer` for records from `2026-01-01` onward ordered by `transaction_id`, returning 3 rows (transactions `2`, `3`, and `4` for Alice Mensah and Bob Okafor) while excluding the external deposit where `source_account_id` is `NULL`.
 * **Query 2 (Accounts with No Recorded Transaction Activity):** Uses `NOT EXISTS` across `public.account`, `public.customer`, and `public.transaction` to check Business Rule 7, returning 1 row (`account_id = 4`, Clara Adeyemi's frozen Money Market account with a `0.00` balance).
@@ -25,11 +25,11 @@ Without a supporting index, PostgreSQL executed a full `Seq Scan` across all 100
 
 | File | Description |
 | :--- | :--- |
-| [Oluwatosin_Ijimakinwa_301915009_P2_Queries.sql](Oluwatosin_Ijimakinwa_301915009_P2_Queries.sql) | Three relational queries covering multi-table joins, `NOT EXISTS` inactivity checks, and `LEFT JOIN` grouped counts. |
-| [Oluwatosin_Ijimakinwa_301915009_P2_Optimisation.sql](Oluwatosin_Ijimakinwa_301915009_P2_Optimisation.sql) | Isolated `p2_benchmark` schema setup, 100,000-row synthetic data generation, composite B-tree index creation, and `EXPLAIN (ANALYZE, BUFFERS)` runs. |
-| [Screenshot/Oluwatosin_Ijimakinwa_301915009_P2_QueryResult.png](Screenshot/Oluwatosin_Ijimakinwa_301915009_P2_QueryResult.png) | Terminal output showing the result sets for Queries 1, 2, and 3. |
-| [Screenshot/Oluwatosin_Ijimakinwa_301915009_P2_BeforeIndex.png](Screenshot/Oluwatosin_Ijimakinwa_301915009_P2_BeforeIndex.png) | Terminal capture of `EXPLAIN (ANALYZE, BUFFERS)` execution plans before creating the B-tree index. |
-| [Screenshot/Oluwatosin_Ijimakinwa_301915009_P2_AfterIndex.png](Screenshot/Oluwatosin_Ijimakinwa_301915009_P2_AfterIndex.png) | Terminal capture of `EXPLAIN (ANALYZE, BUFFERS)` execution plans after creating the B-tree index. |
+| [Ijimakinwa_Oluwatosin_301915009_P2_Queries.sql](Ijimakinwa_Oluwatosin_301915009_P2_Queries.sql) | Three relational queries covering multi-table joins, `NOT EXISTS` inactivity checks, and `LEFT JOIN` grouped counts. |
+| [Ijimakinwa_Oluwatosin_301915009_P2_Optimisation.sql](Ijimakinwa_Oluwatosin_301915009_P2_Optimisation.sql) | Isolated `p2_benchmark` schema setup, 100,000-row synthetic data generation, composite B-tree index creation, and `EXPLAIN (ANALYZE, BUFFERS)` runs. |
+| [Screenshot/Ijimakinwa_Oluwatosin_301915009_P2_QueryResult.png](Screenshot/Ijimakinwa_Oluwatosin_301915009_P2_QueryResult.png) | Terminal output showing the result sets for Queries 1, 2, and 3. |
+| [Screenshot/Ijimakinwa_Oluwatosin_301915009_P2_BeforeIndex.png](Screenshot/Ijimakinwa_Oluwatosin_301915009_P2_BeforeIndex.png) | Terminal capture of `EXPLAIN (ANALYZE, BUFFERS)` execution plans before creating the B-tree index. |
+| [Screenshot/Ijimakinwa_Oluwatosin_301915009_P2_AfterIndex.png](Screenshot/Ijimakinwa_Oluwatosin_301915009_P2_AfterIndex.png) | Terminal capture of `EXPLAIN (ANALYZE, BUFFERS)` execution plans after creating the B-tree index. |
 
 ## Reference
 

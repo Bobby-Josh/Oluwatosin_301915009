@@ -14,10 +14,10 @@ mongosh "mongodb://127.0.0.1:27017"
 
 `db.version()` returns `8.0.38` and `db.runCommand({ ping: 1 })` returns `{ ok: 1 }`.
 
-![MongoDB connection](screenshots/Oluwatosin_Ijimakinwa_301915009_P4_MongoDBConnection.png)
+![MongoDB connection](screenshots/Ijimakinwa_Oluwatosin_301915009_P4_MongoDBConnection.png)
 
 ## Reference
 
 * [MongoDB Ubuntu installation guide](https://www.mongodb.com/docs/v8.0/tutorial/install-mongodb-on-ubuntu/) — MongoDB, Inc. (2026). *Install MongoDB Community Edition on Ubuntu (MongoDB Database Manual v8.0)*.
 * [MongoDB Shell (`mongosh`) connection guide](https://www.mongodb.com/docs/mongodb-shell/connect/) — MongoDB, Inc. (2026). *Connect to a Deployment*.
-* [MongoDB Ubuntu APT repository](https://repo.mongodb.org/apt/ubuntu/) — Official package source referenced in `Oluwatosin_Ijimakinwa_301915009_P4_MongoDBSource.list`.
+* [MongoDB Ubuntu APT repository](https://repo.mongodb.org/apt/ubuntu/) — Official package source referenced in `Ijimakinwa_Oluwatosin_301915009_P4_MongoDBSource.list`.

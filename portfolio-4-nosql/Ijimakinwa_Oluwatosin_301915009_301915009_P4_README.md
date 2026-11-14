@@ -4,7 +4,7 @@
 
 For the **PayPulse** fintech platform, activity records are stored in a single MongoDB database (`paypulse_events`) and collection (`account_events`) rather than splitting events across normalized relational tables. Each document represents one discrete customer financial event (`Transfer` or `BillPayment`) using a unique string `_id`, shared top-level metadata (`event_type`, `occurred_at`), embedded summary subdocuments (`customer`, `source_account`), and a polymorphic `details` object whose internal fields vary by `event_type`.
 
-These four MongoDB documents are standalone fictional records created for Portfolio 4. They reuse valid customer, account-type, and biller identifiers from [Portfolio 1 SampleData.sql](../portfolio-1-database-design/Oluwatosin_Ijimakinwa_301915009_P1_SampleData.sql) (`GOV-1001`, `GOV-1002`, `Alice Mensah`, `Bob Okafor`, `Checking`, `Savings`, `Eko Electric Utility`, `Lagos Water Works`) for domain consistency rather than being exported from PostgreSQL (`paypulse_portfolio`).
+These four MongoDB documents are standalone fictional records created for Portfolio 4. They reuse valid customer, account-type, and biller identifiers from [Portfolio 1 SampleData.sql](../portfolio-1-database-design/Ijimakinwa_Oluwatosin_301915009_P1_SampleData.sql) (`GOV-1001`, `GOV-1002`, `Alice Mensah`, `Bob Okafor`, `Checking`, `Savings`, `Eko Electric Utility`, `Lagos Water Works`) for domain consistency rather than being exported from PostgreSQL (`paypulse_portfolio`).
 
 | Field Path | BSON Type | Scope | Purpose |
 | :--- | :--- | :--- | :--- |
@@ -47,7 +47,7 @@ These four MongoDB documents are standalone fictional records created for Portfo
 
 ## Implementation and results
 
-The script [Oluwatosin_Ijimakinwa_301915009_P4_MongoDB.js](Oluwatosin_Ijimakinwa_301915009_P4_MongoDB.js) was executed in `mongosh` connected to the local MongoDB 8.0.38 instance (`mongodb://127.0.0.1:27017`) while leaving PostgreSQL untouched:
+The script [Ijimakinwa_Oluwatosin_301915009_P4_MongoDB.js](Ijimakinwa_Oluwatosin_301915009_P4_MongoDB.js) was executed in `mongosh` connected to the local MongoDB 8.0.38 instance (`mongodb://127.0.0.1:27017`) while leaving PostgreSQL untouched:
 
 1. **Database selection and pre-insert check:** `db.getSiblingDB("paypulse_events")` selected the target database, and `db.account_events.countDocuments({})` returned `0`, confirming the collection was empty before loading data.
 2. **Single bulk insert:** `db.account_events.insertMany([...])` inserted all four events in one operation (`acknowledged: true`), returning inserted IDs `'EVT-2026-001'`, `'EVT-2026-002'`, `'EVT-2026-003'`, and `'EVT-2026-004'`.
@@ -58,7 +58,7 @@ The script [Oluwatosin_Ijimakinwa_301915009_P4_MongoDB.js](Oluwatosin_Ijimakinwa
    * `EVT-2026-004` (`2026-11-12T16:45:00.000Z`): `Transfer` of `$300` USD to Alice's Savings account (`ACC-GOV1001-SAV`).
 5. **Query 3 — Nested-field filter:** `db.account_events.find({ "details.biller.biller_name": "Eko Electric Utility" })` traversed two nested object levels inside `details` and returned **1 matching document**: `EVT-2026-002` (`2026-11-10T11:30:00.000Z`, paid by Bob Okafor for `$75.5` USD under reference `BILL-EKO-4401`).
 
-![MongoDB query results](screenshots/Oluwatosin_Ijimakinwa_301915009_P4_MongoDBQueries.png)
+![MongoDB query results](screenshots/Ijimakinwa_Oluwatosin_301915009_P4_MongoDBQueries.png)
 
 ## Why MongoDB fits
 
@@ -71,12 +71,12 @@ The script [Oluwatosin_Ijimakinwa_301915009_P4_MongoDB.js](Oluwatosin_Ijimakinwa
 
 ## Files
 
-* [Oluwatosin_Ijimakinwa_301915009_P4_README.md](Oluwatosin_Ijimakinwa_301915009_P4_README.md) — Portfolio 4 document model design, query results, suitability analysis, and references.
-* [Oluwatosin_Ijimakinwa_301915009_P4_Setup.md](Oluwatosin_Ijimakinwa_301915009_P4_Setup.md) — Local MongoDB 8.0.38 startup instructions and connection verification.
-* [Oluwatosin_Ijimakinwa_301915009_P4_MongoDBSource.list](Oluwatosin_Ijimakinwa_301915009_P4_MongoDBSource.list) — Official MongoDB 8.0 APT repository configuration used during installation.
-* [Oluwatosin_Ijimakinwa_301915009_P4_MongoDB.js](Oluwatosin_Ijimakinwa_301915009_P4_MongoDB.js) — `mongosh` script containing the empty check, `insertMany` batch, and three verification queries.
-* [screenshots/Oluwatosin_Ijimakinwa_301915009_P4_MongoDBConnection.png](screenshots/Oluwatosin_Ijimakinwa_301915009_P4_MongoDBConnection.png) — Terminal verification of `db.version()` (`8.0.38`) and `ping` (`{ ok: 1 }`).
-* [screenshots/Oluwatosin_Ijimakinwa_301915009_P4_MongoDBQueries.png](screenshots/Oluwatosin_Ijimakinwa_301915009_P4_MongoDBQueries.png) — Terminal output showing execution of the `account_events` queries.
+* [Ijimakinwa_Oluwatosin_301915009_P4_README.md](Ijimakinwa_Oluwatosin_301915009_P4_README.md) — Portfolio 4 document model design, query results, suitability analysis, and references.
+* [Ijimakinwa_Oluwatosin_301915009_P4_Setup.md](Ijimakinwa_Oluwatosin_301915009_P4_Setup.md) — Local MongoDB 8.0.38 startup instructions and connection verification.
+* [Ijimakinwa_Oluwatosin_301915009_P4_MongoDBSource.list](Ijimakinwa_Oluwatosin_301915009_P4_MongoDBSource.list) — Official MongoDB 8.0 APT repository configuration used during installation.
+* [Ijimakinwa_Oluwatosin_301915009_P4_MongoDB.js](Ijimakinwa_Oluwatosin_301915009_P4_MongoDB.js) — `mongosh` script containing the empty check, `insertMany` batch, and three verification queries.
+* [screenshots/Ijimakinwa_Oluwatosin_301915009_P4_MongoDBConnection.png](screenshots/Ijimakinwa_Oluwatosin_301915009_P4_MongoDBConnection.png) — Terminal verification of `db.version()` (`8.0.38`) and `ping` (`{ ok: 1 }`).
+* [screenshots/Ijimakinwa_Oluwatosin_301915009_P4_MongoDBQueries.png](screenshots/Ijimakinwa_Oluwatosin_301915009_P4_MongoDBQueries.png) — Terminal output showing execution of the `account_events` queries.
 
 ## References
 
